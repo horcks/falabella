@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {% load static %}
+  <title>Falabella</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="{% static 'fonts/css/font-awesome.css' %}">
+  <link href="{% static 'css/floating-labels.css' %}" rel="stylesheet">
+  <link rel="shortcut icon" type="text/css" href="{% static '/image/falabella-logo.svg' %}" />
+</head>
+<body class="text-center full-Cimage bi-Clogin h-100">
+  <div class="container h-75 text-center"><br><br><br><br>
+    <div class="row">
+      <div class="col-10 offset-1 col-md-6 offset-md-3 py-3 overflow-auto" id="auth-container">
+          {% block container %}{% endblock%}
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static 'jquery/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jquery/jquery-ui.min.js' %}"></script>
+  <!-- Popper.JS <label class="font-weight-bold text-Csecondary h4">Ofertas que no puedes perderte</label>-->    
+  <!-- Bootstrap JS  con popper.js-->
+  <script type="text/javascript" src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <!--Funcionalidades personalizadas generales-->
+  {% block script %}{% endblock %}
+</body>
+</html>

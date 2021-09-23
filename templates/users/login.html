@@ -1,0 +1,21 @@
+{% extends "general/base_login.html" %}
+{% load static %}
+{% block container %}
+<img src="{% static "image/1200px-Falabella.svg.png" %}" class="img-fluid rounded mx-auto d-block pb-4" style="max-width: 60%;">
+<form method="POST" action="{% url "login" %}" class="form-signin">
+  {% csrf_token %}
+  <input type="text" placeholder="Username" class="form-control" name="username" value="{% if form.errors %}{{form.username.value}}{% endif %}" />
+  <input type="password" placeholder="Password" class="form-control mt-2" name="password" />
+  <button type="submit" class="btn btn-lg btn-primary btn-block mt-2">Ingresar</button>
+</form>
+<div class="">
+  <a href="{% url "users:registration" %}">Registrate</a>  
+</div>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error!</strong>{{form.errors}}
+</div>
+
+{% endif %}
+{% endblock %}

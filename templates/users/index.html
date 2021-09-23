@@ -1,0 +1,57 @@
+{% extends "general/base.html" %}
+
+{% block container %}
+<div class="row">
+    <a href="{% url 'users:downloadUsers' %}">Descargar</a>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono 1</th>
+        <th scope="col">Telefono 2</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Documento</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Genero</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x  in object_list %}
+      <tr>
+        <th scope="row">{{x.user.id}}</th>
+        <td>{{x.user.get_full_name}}</td>
+        <td>{{x.user.email}}</td>
+        <td>{{x.phone1}}</td>
+        <td>{{x.phone2}}</td>
+        <td>{{x.address}}</td>
+        <td>{{x.document_type}} {{x.document_number}}</td>
+        <td>{{x.date_birth}}</td>
+        <td>{{x.gender}}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
