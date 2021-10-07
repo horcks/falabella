@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ph5$e7shy4p@c0-f%)8)&0gl%_*mwatni$mg*#)+#xkv2i@__w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoise.Middleware',
 ]
 
 ROOT_URLCONF = 'falabella.urls'
@@ -80,20 +82,28 @@ WSGI_APPLICATION = 'falabella.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+if DEBUG :
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'falabella',
-        'USER': 'root', 
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',   #my port is 3306
-        'OPTIONS':{
-            'read_default_file': '/opt/lampp/etc/my.cnf',
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'falabella',
+            'USER': 'root', 
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '3306',   #my port is 3306
+            'OPTIONS':{
+                'read_default_file': '/opt/lampp/etc/my.cnf',
+            }
         }
     }
-}
+else :
+    DATABASES = {
+        'default': dj_database_url.connfig(
+            default = config('DATABASE_URL')
+        )
+    }
+
 
 
 # Password validation
@@ -157,3 +167,6 @@ handler404 = 'apps.users.views.index'
 SITE_ID = 1
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+if DEBUG :
+    STATICFILES_STORAGE = 'whinoise.storge.CompressedManifestStaticFilesStorange'
