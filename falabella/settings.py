@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoise.Middleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'falabella.urls'
@@ -99,7 +99,7 @@ if DEBUG :
     }
 else :
     DATABASES = {
-        'default': dj_database_url.connfig(
+        'default': dj_database_url.config(
             default = config('DATABASE_URL')
         )
     }
