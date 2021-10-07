@@ -165,6 +165,7 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL= ('users:index')
 handler404 = 'apps.users.views.index'
 SITE_ID = 1
+DISABLE_COLLECTSTATIC=1
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
