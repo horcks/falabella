@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, logout_then_login
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', LoginView.as_view(template_name="users/login.html"), name="login"),
     path('accounts/login/', LoginView.as_view(template_name="users/login.html"), name="login"),
     path('accounts/logout', logout_then_login, name="logout"),
     path('', include(('apps.users.urls', 'users'), namespace="users")),    
