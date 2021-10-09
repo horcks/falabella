@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ph5$e7shy4p@c0-f%)8)&0gl%_*mwatni$mg*#)+#xkv2i@__w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -98,12 +98,12 @@ if DEBUG :
         }
     }
 else :
-   DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+    DATABASES = {
+        'default': dj_database_url.config(
+            default = config('DATABASE_URL')
+        )
     }
-}
+
 
 
 # Password validation
@@ -168,7 +168,6 @@ SITE_ID = 1
 # DISABLE_COLLECTSTATIC=1
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
 
 # if not DEBUG :
 #     STATICFILES_STORAGE = 'whitenoise.storge.CompressedManifestStaticFilesStorange'
