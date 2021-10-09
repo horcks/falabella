@@ -173,6 +173,7 @@ SITE_ID = 1
 # DISABLE_COLLECTSTATIC=1
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-STATICFILES_STORAGE = 'whitenoise.storge.CompressedManifestStaticFilesStorange'
+# STATICFILES_STORAGE = 'whitenoise.storge.CompressedManifestStaticFilesStorange'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # if not DEBUG :
 #     STATICFILES_STORAGE = 'whitenoise.storge.CompressedManifestStaticFilesStorange'
