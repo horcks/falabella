@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ph5$e7shy4p@c0-f%)8)&0gl%_*mwatni$mg*#)+#xkv2i@__w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,28 +82,33 @@ WSGI_APPLICATION = 'falabella.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-if DEBUG :
+# if DEBUG :
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'falabella',
-            'USER': 'root', 
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '3306',   #my port is 3306
-            'OPTIONS':{
-                'read_default_file': '/opt/lampp/etc/my.cnf',
-            }
-        }
-    }
-else :
-    DATABASES = {
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'falabella',
+#             'USER': 'root', 
+#             'PASSWORD': '',
+#             'HOST': 'localhost',
+#             'PORT': '3306',   #my port is 3306
+#             'OPTIONS':{
+#                 'read_default_file': '/opt/lampp/etc/my.cnf',
+#             }
+#         }
+#     }
+# else :
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default = config('DATABASE_URL')
+#         )
+#     }
+
+DATABASES = {
         'default': dj_database_url.config(
             default = config('DATABASE_URL')
         )
     }
-
 
 
 # Password validation
