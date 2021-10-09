@@ -1,1 +1,1 @@
-web:gunicorn falabella.wsgi
+web: gunicorn falabella.wsgi
