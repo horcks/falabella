@@ -25,4 +25,4 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(template_name="users/login.html"), name="login"),
     path('accounts/logout', logout_then_login, name="logout"),
     path('', include(('apps.users.urls', 'users'), namespace="users")),    
-]+ static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
